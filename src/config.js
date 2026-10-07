@@ -7,8 +7,8 @@ export const config = {
   uri: process.env.NEO4J_URI || "bolt://localhost:7687",
   user: process.env.NEO4J_USER || "neo4j",
   password: process.env.NEO4J_PASSWORD || "soufiscal-local",
-  tseDir: process.env.TSE_DIR || path.resolve(raiz, "../../arquivos-tse"),
-  receitaDir: process.env.RECEITA_DIR || path.resolve(raiz, "../../arquivos-receita"),
+  tseDir: process.env.TSE_DIR || path.resolve(raiz, "arquivos-tse"),
+  receitaDir: process.env.RECEITA_DIR || path.resolve(raiz, "arquivos-receita"),
   raiz,
 };
 

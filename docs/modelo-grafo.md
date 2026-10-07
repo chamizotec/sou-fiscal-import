@@ -172,7 +172,7 @@ Os alertas não são nós. A API, em `back/src/alertas.js`, monta na hora para a
 
 ## Importar de novo
 
-Os comandos abaixo rodam dentro de `import/`. Pelo Docker, troque `npm run import --` por `docker compose run --rm import`.
+Os comandos abaixo rodam dentro de `import/`. Pelo Docker, a partir de `infra/`, troque `npm run import --` por `docker compose run --rm import`.
 
 A carga é idempotente: `MERGE` na chave. Rodar outra UF acrescenta. Rodar a mesma UF atualiza propriedade.
 
@@ -186,7 +186,7 @@ npm run import -- --uf all --only candidatos,processos
 Etapas de `--only`: `candidatos`, `financeiro`, `cnpj`, `processos`, `receita`. Sem `--only`, rodam todas. `cnpj` e `processos` são arquivos nacionais; o filtro de UF não os corta, e o processo só liga em candidatura que já existe. Depois de incluir uma UF nova, rode `processos` outra vez.
 
 
-A etapa `receita` lê `arquivos-receita/` (ou `RECEITA_DIR`). Ela não depende da UF. `npm run import:receita`, ou `docker compose run --rm import --only receita`, percorre o snapshot mensal mais recente e os regimes, e grava empresa, estabelecimento, sócio, Simples e regime só dos CNPJs já presentes.
+A etapa `receita` lê `arquivos-receita/` (ou `RECEITA_DIR`). Ela não depende da UF. `npm run import:receita`, ou `docker compose run --rm import --only receita` (a partir de `infra/`), percorre o snapshot mensal mais recente e os regimes, e grava empresa, estabelecimento, sócio, Simples e regime só dos CNPJs já presentes.
 Não importe `perfil_eleitor_deficiencia`: a linha é de eleitor, com `SQ_ELEITOR`. Perfil agregado do eleitorado também fica fora deste grafo. Ele descreve seção e município, não candidato.
 
 Prestação de contas desta pasta é parcial, gerada em 4 de outubro de 2026. `Candidatura.geradoEm` e `:Carga` registram a versão.
