@@ -8,6 +8,12 @@ import { importarCnpj } from "./etapas/cnpj.js";
 import { importarReceita } from "./etapas/receita.js";
 
 const { uf, only } = argumentos(process.argv.slice(2));
+
+if (process.env.IMPORT_AGUARDAR === "1") {
+  console.log("Importação em espera. Os arquivos do TSE e da Receita não estão neste serviço.");
+  process.exit(0);
+}
+
 const quer = (nome) => !only || only.includes(nome);
 
 if (only?.length === 1 && only[0] === "receita") {
